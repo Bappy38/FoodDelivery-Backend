@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Taste of Tuscany",
+        "cuisine": "Italian, Mediterranean",
+        "rating": 4.7,
+        "deliveryTimeInMinutes": 45,
+        "imageUrl": "https://img.freepik.com/free-photo/delicious-burger-with-many-ingredients-isolated-white-background-tasty-cheeseburger-splash-sauce_90220-1266.jpg?t=st=1715625020~exp=1715628620~hmac=ee0ee3d2f13079fdde6fceb6505a1c87055ea22bd4f475c0d1b08be27c7556fd&w=740"
+    },
+    {
+        "id": 2,
+        "name": "Spice Route",
+        "cuisine": "Indian, Fusion",
+        "rating": 3.5,
+        "deliveryTimeInMinutes": 50,
+        "imageUrl": "https://img.freepik.com/premium-photo/asian-food-chinese-fried-rice_711483-63.jpg?w=740"
+    },
+    {
+        "id": 3,
+        "name": "Sushi Delight",
+        "cuisine": "Japanese, Sushi",
+        "rating": 3.9,
+        "deliveryTimeInMinutes": 35,
+        "imageUrl": "https://img.freepik.com/free-photo/well-done-steak-homemade-potatoes_140725-3989.jpg?t=st=1715625633~exp=1715629233~hmac=9358f465c2dc38126fd47b036513a1c40175c4e9c5b6f928f1ce67c535ff00a9&w=360"
+    },
+    {
+        "id": 4,
+        "name": "Cafe Parisienne",
+        "cuisine": "French, Bakery",
+        "rating": 4.6,
+        "deliveryTimeInMinutes": 40,
+        "imageUrl": "https://img.freepik.com/premium-photo/couscous-with-mussels-shrimps_135427-6342.jpg?w=900"
+    },
+    {
+        "id": 5,
+        "name": "Mamma Mia Pizzeria",
+        "cuisine": "Italian, Pizza",
+        "rating": 4.8,
+        "deliveryTimeInMinutes": 30,
+        "imageUrl": "https://img.freepik.com/free-photo/chicken-skewers-with-slices-sweet-peppers-dill_2829-18813.jpg?t=st=1715625626~exp=1715629226~hmac=00611d8c50b843d7394cae185a955cc6ef6043004e197aeeb52089c3f4c0bbe4&w=900"
+    },
+    {
+        "id": 6,
+        "name": "Thai Spice",
+        "cuisine": "Thai, Street Food",
+        "rating": 4.3,
+        "deliveryTimeInMinutes": 55,
+        "imageUrl": "https://img.freepik.com/free-photo/fruit-salad-spilling-floor-was-mess-vibrant-colors-textures-generative-ai_8829-2895.jpg?t=st=1715625620~exp=1715629220~hmac=6b64105071cebcd0c9da994bcbcc88cd3ea991e25a8d072627160539f99099ec&w=360"
+    },
+    {
+        "id": 7,
+        "name": "Smokehouse BBQ",
+        "cuisine": "American, BBQ",
+        "rating": 4.4,
+        "deliveryTimeInMinutes": 45,
+        "imageUrl": "https://img.freepik.com/premium-photo/large-bowl-food-with-fish-vegetables_197463-2405.jpg?w=740"
+    },
+    {
+        "id": 8,
+        "name": "Mediterranean Breeze",
+        "cuisine": "Mediterranean, Seafood",
+        "rating": 4.7,
+        "deliveryTimeInMinutes": 40,
+        "imageUrl": "https://img.freepik.com/free-photo/baked-chicken-wings-asian-style-tomatoes-sauce-plate_2829-10657.jpg?t=st=1715625611~exp=1715629211~hmac=5c1d6b2f70119d1f65f1fc53eec7e531b920c69faa7f534c7c1cd62d4c7510e1&w=900"
+    },
+    {
+        "id": 9,
+        "name": "Bollywood Spice",
+        "cuisine": "Indian, Bollywood Fusion",
+        "rating": 4.5,
+        "deliveryTimeInMinutes": 50,
+        "imageUrl": "https://img.freepik.com/free-photo/baked-chicken-wings-asian-style-tomatoes-sauce-plate_2829-10657.jpg?t=st=1715625611~exp=1715629211~hmac=5c1d6b2f70119d1f65f1fc53eec7e531b920c69faa7f534c7c1cd62d4c7510e1&w=900"
+    },
+    {
+        "id": 10,
+        "name": "Green Garden Salad Bar",
+        "cuisine": "Healthy, Salad",
+        "rating": 4.6,
+        "deliveryTimeInMinutes": 35,
+        "imageUrl": "https://img.freepik.com/premium-photo/grilled-pork-beef-steaks-with-chilli-salt-are-falling-down-black-background-barbecue-grill_157927-18741.jpg?w=360"
+    }
+]
