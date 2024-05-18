@@ -1,4 +1,5 @@
-﻿using FoodDelivery.API.Repositories;
+﻿using FoodDelivery.API.Queries;
+using FoodDelivery.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.API.Controllers;
@@ -18,6 +19,13 @@ public class RestaurantsController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var restaurants = await _restaurantsRepository.GetAllAsync();
+        return Ok(restaurants);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] RestaurantFilterDto filter)
+    {
+        var restaurants = _restaurantsRepository.FilterRestaurant(filter);
         return Ok(restaurants);
     }
 }
