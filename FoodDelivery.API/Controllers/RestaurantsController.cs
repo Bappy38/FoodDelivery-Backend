@@ -22,6 +22,17 @@ public class RestaurantsController : ControllerBase
         return Ok(restaurants);
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(int id)
+    {
+        var restaurantDetail = _restaurantsRepository.GetRestaurantDetail(id);
+        if (restaurantDetail is null)
+        {
+            return NotFound();
+        }
+        return Ok(restaurantDetail);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] RestaurantFilterDto filter)
     {

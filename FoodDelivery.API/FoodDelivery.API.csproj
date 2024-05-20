@@ -16,10 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Resources\Menus.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Resources\Restaurants.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
