@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="Resources\Menus.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
