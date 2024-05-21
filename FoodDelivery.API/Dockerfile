@@ -9,7 +9,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FoodDelivery.API/FoodDelivery.API.csproj", "FoodDelivery.API/"]
+COPY ["FoodDelivery-Backend/FoodDelivery.API/FoodDelivery.API.csproj", "FoodDelivery.API/"]
 RUN dotnet restore "./FoodDelivery.API/FoodDelivery.API.csproj"
 COPY . .
 WORKDIR "/src/FoodDelivery.API"
