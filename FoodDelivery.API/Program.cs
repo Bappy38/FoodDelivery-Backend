@@ -6,20 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterServices();
+builder.Services
+    .RegisterServices()
+    .ConfigureCorsPolicy(builder.Configuration);
 
 builder.Services.AddControllers();
-
-builder.Services.AddCors(cors =>
-{
-    cors.AddPolicy(Cors.FoodDeliveryClientCors, policy =>
-    {
-        policy
-        .WithOrigins("http://localhost:1234")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-    });
-});
 
 var app = builder.Build();
 
