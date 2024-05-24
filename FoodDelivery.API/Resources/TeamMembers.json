@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Name": "Iqbal Hossain",
+    "Designation": "CEO",
+    "About": "Iqbal Hossain is the CEO of our company. He completed his BSc in Computer Science from Comilla University, Bangladesh. Later, started his career as a Software Engineer at Orbitax Bangladesh Ltd.",
+    "ImageUrl": "https://scontent.fdac14-1.fna.fbcdn.net/v/t39.30808-1/314584593_2474775372672419_4791525357289139371_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=eacAuMa3Ud8Q7kNvgEfHaBI&_nc_ht=scontent.fdac14-1.fna&oh=00_AYDvWsWj6sRI2X3PZXhJ0WYj_dHA8MLEMYSGTUYPuqMU8Q&oe=66560358",
+    "TeamName": "Management"
+  },
+  {
+    "Id": 2,
+    "Name": "Jabed Hossain",
+    "Designation": "Managing Director",
+    "About": "Jabed Hossain is the Managing Director of our company. He completed his MBA from Islamia University, Bangladesh.",
+    "ImageUrl": "https://scontent.fdac14-1.fna.fbcdn.net/v/t39.30808-6/369870628_2223214064534377_2561915557354172856_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=KpcUlNSZa78Q7kNvgF_7aBw&_nc_ht=scontent.fdac14-1.fna&oh=00_AYAdTE3sXaZ7D_RmSgqU7JAPgXJQxLmjmP1QJ64nFJqaTQ&oe=66562B00",
+    "TeamName": "Management"
+  }
+]
