@@ -19,6 +19,8 @@ public class RestaurantRepository : IRestaurantRepository
     private static readonly List<Restaurant> restaurants;
     private static readonly List<RestaurantMenu> menus;
 
+    private ILogger<RestaurantRepository> _logger;
+
     static RestaurantRepository()
     {
         var restaurantsJson = File.ReadAllText(ResourcePaths.Restaurants);
@@ -28,8 +30,16 @@ public class RestaurantRepository : IRestaurantRepository
         menus = JsonConvert.DeserializeObject<List<RestaurantMenu>>(menuJson);
     }
 
+    public RestaurantRepository(ILogger<RestaurantRepository> logger)
+    {
+        _logger = logger;
+    }
+
     public async Task<List<Restaurant>> GetAllAsync()
     {
+        _logger.LogDebug($"Restaurants Fetched. Debug");
+        _logger.LogInformation($"Restaurants Fetched. Information");
+        _logger.LogError($"Restaurants Fetched. Error");
         return restaurants;
     }
 
