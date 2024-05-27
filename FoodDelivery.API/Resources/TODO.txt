@@ -6,3 +6,4 @@
 6. Implement Result Pattern
 7. Integrate SQL DB with EFCore and Deploy It
 8. Integrate S3 for Storing Food Item Image
+9. Rate Limiting
