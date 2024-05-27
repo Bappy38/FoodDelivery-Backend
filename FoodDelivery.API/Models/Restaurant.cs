@@ -9,6 +9,7 @@ public class Restaurant
     public int DeliveryTimeInMinutes { get; set; }
     public string ImageUrl { get; set; }
     public Address Address { get; set; }
+    public bool IsPromoted { get; set; } = false;
 
     public double GetDistance(Location userLocation)
     {

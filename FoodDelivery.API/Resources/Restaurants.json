@@ -5,7 +5,8 @@
     "cuisine": "Italian, Mediterranean",
     "rating": 4.7,
     "deliveryTimeInMinutes": 45,
-    "imageUrl": "https://img.freepik.com/free-photo/delicious-burger-with-many-ingredients-isolated-white-background-tasty-cheeseburger-splash-sauce_90220-1266.jpg?t=st=1715625020~exp=1715628620~hmac=ee0ee3d2f13079fdde6fceb6505a1c87055ea22bd4f475c0d1b08be27c7556fd&w=740"
+    "imageUrl": "https://img.freepik.com/free-photo/delicious-burger-with-many-ingredients-isolated-white-background-tasty-cheeseburger-splash-sauce_90220-1266.jpg?t=st=1715625020~exp=1715628620~hmac=ee0ee3d2f13079fdde6fceb6505a1c87055ea22bd4f475c0d1b08be27c7556fd&w=740",
+    "IsPromoted": true
   },
   {
     "id": 2,
@@ -45,7 +46,8 @@
     "cuisine": "Thai, Street Food",
     "rating": 4.3,
     "deliveryTimeInMinutes": 55,
-    "imageUrl": "https://img.freepik.com/free-photo/fruit-salad-spilling-floor-was-mess-vibrant-colors-textures-generative-ai_8829-2895.jpg?t=st=1715625620~exp=1715629220~hmac=6b64105071cebcd0c9da994bcbcc88cd3ea991e25a8d072627160539f99099ec&w=360"
+    "imageUrl": "https://img.freepik.com/free-photo/fruit-salad-spilling-floor-was-mess-vibrant-colors-textures-generative-ai_8829-2895.jpg?t=st=1715625620~exp=1715629220~hmac=6b64105071cebcd0c9da994bcbcc88cd3ea991e25a8d072627160539f99099ec&w=360",
+    "IsPromoted": true
   },
   {
     "id": 7,
