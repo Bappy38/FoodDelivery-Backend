@@ -2,6 +2,6 @@
 
 public class CartItem
 {
-    public MenuItem Item { get; set; }
+    public FoodItem Item { get; set; }
     public int Quantity { get; set; }
 }

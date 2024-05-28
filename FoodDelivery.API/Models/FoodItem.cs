@@ -1,6 +1,6 @@
 ﻿namespace FoodDelivery.API.Models;
 
-public class MenuItem
+public class FoodItem
 {
     public int Id { get; set; }
     public string Name { get; set; }
