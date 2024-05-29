@@ -1,9 +1,12 @@
 1. Implement Global Exception Handling Middleware
 2. Implement Response Time Calculation Middleware
 3. Implement Health Check Endpoint
-4. Implement Proper Logger using Serilog, S3, Elastic Search
+4. Implement Proper Logger using Serilog, S3, Elastic Search (Running)
 5. Deploy in EC2. Explore all about EC2
 6. Implement Result Pattern
 7. Integrate SQL DB with EFCore and Deploy It
 8. Integrate S3 for Storing Food Item Image
 9. Rate Limiting
+10. Use PostgreSQL as Database
+11. Use Redis for Caching
+12. 

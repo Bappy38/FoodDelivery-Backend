@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.API.Constants;
+using FoodDelivery.API.Services;
 
 namespace FoodDelivery.API.Middlewares;
 
@@ -17,6 +18,9 @@ public class CorrelationIdCreatorMiddleware
         {
             context.Request.Headers.TryAdd(RequestHeaders.CorrelationId, Guid.NewGuid().ToString());
         }
+
+        var correlationId = context.Request.Headers[RequestHeaders.CorrelationId];
+        RequestContext.CorrelationId = correlationId;
 
         context.Response.OnStarting(() =>
         {

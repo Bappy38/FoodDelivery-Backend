@@ -1,4 +1,4 @@
-﻿using FoodDelivery.API.Constants;
+﻿using FoodDelivery.API.Services;
 using Serilog.Core;
 using Serilog.Events;
 
@@ -8,7 +8,6 @@ public class CorrelationIdEnricher : ILogEventEnricher
 {
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
     {
-        var correlationId = "DummyCorrelationId";
-        logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty("CorrelationId", correlationId));
+        logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty("CorrelationId", RequestContext.CorrelationId));
     }
 }
