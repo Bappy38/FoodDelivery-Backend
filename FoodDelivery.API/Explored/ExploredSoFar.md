@@ -21,30 +21,4 @@ Render provides built-in CI to us. That means whenever we push some changes to t
 
 ## AWS Deployments
 
-### Create an EC2 Instance
-
-- Login to your AWS Management Console and search for EC2
-- Click on `Launch Instance`
-- Name your Instance
-- Select `AWS Linux`
-- Select `t2.micro` as instance type
-- Create a key-pair to connect your instance securely. Select `food-delivery` as name `RSA` as key-pair type and `.ppk` as private key file format.
-- Then Launch the Instance
-
-### Connect to the Instance
-
-- We can connect to the instance from AWS Management Console
-
-### Setting Up the Environment
-
-- Let's switch to the Super User by typing the command `sudo su`.
-- Install git by the command `yum install git`. The command tells the package manager to search for the Git package in the repositories configured on the system, download it and install it along with any dependencies it requires.
-- Install docker by the command `yum install docker`.
-- Start the docker service on linux by the command `sudo systemctl start docker.service`.
-- Check whether the docker service is running or not by the command `docker ps`.
-- 
-
-
-- Download the .NET SDK installer script by the command `wget https://dot.net/v1/dotnet-install.sh`.
-- Run the installer script with the desired .NET version to install by the command `bash dotnet-install.sh --runtime aspnetcore --version 8.0.0`.
-- Run the installer script again to install the .NET SDK for .NET 8 by the command `bash dotnet-install.sh --install-dir /usr/share/dotnet --version 8.0.301`
+Check `EC2Deployment.md` file for detail
