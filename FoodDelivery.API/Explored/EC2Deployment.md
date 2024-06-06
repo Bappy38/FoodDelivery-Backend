@@ -55,15 +55,20 @@ Push your docker image to ECR with the same approach described above.
 
 - Create a EBS volume from Volumes section of EC2 Dashboard
 - Attach the volume to the intended EC2 instance
-- List the available disk devises to find the newly attached volume with the command `lsblk`. Identify the newly attached volume. It will likely be something like `/dev/xvdf`.
+- List the available disk devices to find the newly attached volume with the command `lsblk`. Identify the newly attached volume. It will likely be something like `/dev/xvdf`.
 - Use the command `sudo file -s /dev/xvdf` to get the file system of the volume. It will shows only the word `data` if the volume has no file system. In that case, we can create file system with the command `sudo mkfs -t xfs /dev/xvdf`
 - Create a mount point directory for the volume with command `sudo mkdir /mnt/data`
-- Mount the volume to the mount point directory with command `sudo mount /dev/xvdf /mnt/data`
+- Mount the volume to the mount point directory with command `sudo mount /dev/xvdf /mnt/data`. You can find from volume section whether your volume is `/dev/xvdbf` or not.
 - Verify that the volume is mounted correctly by listing the contents of the mount point directory with command `ls /mnt/data`
-- Configure the volume to automatically mount on boot by adding an entry to the file `/etc/fstab`. Search for details.
-- Type command `sudo nano /mnt/data/myscript.sh` to create a script and paste the desired script. Press `Ctrl+0` to save, then `Enter` to confirm the filename and `Ctrl+X` to exit.
+- Configure the volume to automatically mount on reboot by adding an entry to the file `/etc/fstab`. Search for details.
+- Type command `sudo nano /mnt/data/myscript.sh` to create a script and paste the desired script. Press `Ctrl+X` to save, then `Enter` to confirm the filename and exit.
 - Change the file permissions to make the script executable with the command `sudo chmod +x /mnt/data/myscript.sh`
+- Create environment/appsettings.json file using the same way creating the script file. And provide this file path while executing deployment script.
 - Run the script with the command `/mnt/data/myscript.sh`
+
+
+## Check Container Logs
+
 
 <hr>
 
