@@ -10,6 +10,8 @@ public static class ServiceRegistration
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
         services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
 
+        services.AddHealthChecks();
+
         return services;
     }
 

@@ -2,6 +2,8 @@ using FoodDelivery.API.Constants;
 using FoodDelivery.API.Extensions;
 using FoodDelivery.API.LogEnrichers;
 using FoodDelivery.API.Middlewares;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +38,12 @@ app.UseHttpsRedirection();
 app.UseMiddleware<CorrelationIdCreatorMiddleware>();
 
 app.MapControllers();
+
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.UseSerilogRequestLogging();
 

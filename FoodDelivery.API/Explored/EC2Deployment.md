@@ -37,7 +37,7 @@
 
 <hr><br><br>
 
-# Automation (TODO)
+# Automation
 
 We can automate this deployment process like below:
 - We can write a bash script which will be responsible for installing all the necessary thing like `docker`, `ElasticSearch Agent` at the startup of an EC2 instance. There's a way we can upload this script while creating the EC2 instance.
@@ -70,7 +70,11 @@ Push your docker image to ECR with the same approach described above.
 ## Check Container Logs
 
 
-<hr>
+<hr><br>
+
+# Integrating Load Balancers
+
+<hr><br>
 
 # Improvement (TODO)
 
