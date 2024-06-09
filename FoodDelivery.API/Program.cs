@@ -45,6 +45,8 @@ app.MapHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
+app.UseExceptionHandler();
+
 app.UseSerilogRequestLogging();
 
 app.Run();

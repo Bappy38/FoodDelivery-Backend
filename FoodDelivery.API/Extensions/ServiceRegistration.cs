@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.API.Constants;
+using FoodDelivery.API.ExceptionHandlers;
 using FoodDelivery.API.Repositories;
 
 namespace FoodDelivery.API.Extensions;
@@ -9,6 +10,9 @@ public static class ServiceRegistration
     {
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
         services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
+
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
 
         services.AddHealthChecks();
 
