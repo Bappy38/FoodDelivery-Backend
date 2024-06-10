@@ -35,6 +35,15 @@
 	- Run the docker container with the command `docker run -d -p 80:8080 your-account-id.dkr.ecr.your-region.amazonaws.com/yourapp-repo:latest`. Don't forget to provide environment variable if you have any.
 	- Don't forget to expose port. 80 for HTTP request, 443 for HTTPs request. Also run the docker container accordingly, means map to relevant port, 80 for HTTP, 443 for HTTPS.
 
+**Note:** While running docker container it's a best practice to specify how much RAM and how many CPUs it can use at max. If we don't specify such constraints then the resource distribution accross multiple containers running in that EC2 instance will not fair. It can happen that a single container using all resources of host's, but other containers can't occupy enough resource to run. Even if we run a single container into an EC2 instance, it can consumes all available memory and can cause the host system to become unstable or even crash.
+
+```
+
+docker run -d --cpus="2.0" --memory="1g" --name container-a my-cpu-intensive-app
+docker run -d --cpus="1.0" --memory="2g" --name container-b my-memory-intensive-app
+
+```
+
 <hr><br><br>
 
 # Automation
