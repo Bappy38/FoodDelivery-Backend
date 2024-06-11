@@ -1,25 +1,24 @@
 ﻿using FoodDelivery.API.Constants;
+using FoodDelivery.API.Data;
 using FoodDelivery.API.ExceptionHandlers;
 using FoodDelivery.API.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.API.Extensions;
 
 public static class ServiceRegistration
 {
-    public static IServiceCollection RegisterServices(this IServiceCollection services)
+    public static IServiceCollection RegisterDependencies(this IServiceCollection services,
+        IConfiguration configuration)
     {
-        services.AddScoped<IRestaurantRepository, RestaurantRepository>();
-        services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
-
-        services.AddExceptionHandler<GlobalExceptionHandler>();
-        services.AddProblemDetails();
-
-        services.AddHealthChecks();
-
-        return services;
+        return services
+            .ConfigureCorsPolicy(configuration)
+            .ConfigureDatabases(configuration)
+            .RegisterExceptionHandlers()
+            .RegisterServices();
     }
 
-    public static IServiceCollection ConfigureCorsPolicy(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection ConfigureCorsPolicy(this IServiceCollection services, IConfiguration configuration)
     {
         var dashboardUrl = configuration.GetValue<string>(EnvironmentVariableKeys.DashboardUrl);
 
@@ -34,11 +33,37 @@ public static class ServiceRegistration
             cors.AddPolicy(Cors.FoodDeliveryClientCors, policy =>
             {
                 policy
-                .WithOrigins(dashboardUrl)
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+                    .WithOrigins(dashboardUrl)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
             });
         });
+        return services;
+    }
+
+    private static IServiceCollection ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("PostgresConnection")));
+        return services;
+    }
+
+    private static IServiceCollection RegisterExceptionHandlers(this IServiceCollection services)
+    {
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
+        return services;
+    }
+
+    private static IServiceCollection RegisterServices(this IServiceCollection services)
+    {
+        services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+        services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
+
+        services
+            .AddHealthChecks()
+            .Services.AddDbContext<ApplicationDbContext>();
+
         return services;
     }
 }

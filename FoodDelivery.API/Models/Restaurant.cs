@@ -8,13 +8,12 @@ public class Restaurant
     public double Rating { get; set; }
     public int DeliveryTimeInMinutes { get; set; }
     public string ImageUrl { get; set; }
-    public Address Address { get; set; }
     public bool IsPromoted { get; set; } = false;
+    
+    public int AddressId { get; set; }
+    public Address Address { get; set; }
 
-    public double GetDistance(Location userLocation)
-    {
-        return 10;
-    }
+    public RestaurantMenu Menu { get; set; }
 
     public bool IsTopRestaurant()
     {

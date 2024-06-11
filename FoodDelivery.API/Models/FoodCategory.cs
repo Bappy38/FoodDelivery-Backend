@@ -4,5 +4,9 @@ public class FoodCategory
 {
     public int Id { get; set; }
     public string Title { get; set; }
-    public List<FoodItem> Items { get; set; }
+    
+    public int RestaurantMenuId { get; set; }
+    public RestaurantMenu RestaurantMenu { get; set; }
+    
+    public ICollection<FoodItem> Items { get; set; }
 }
