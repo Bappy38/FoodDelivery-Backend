@@ -47,7 +47,7 @@ docker run -d --cpus="1.0" --memory="2g" --name container-b my-memory-intensive-
 
 ```
 
-<hr><br><br>
+<hr><br>
 
 # Automation
 
@@ -81,11 +81,42 @@ Push your docker image to ECR with the same approach described above.
 
 ## Check Container Logs
 
+```
+
+// To get running docker container list
+docker ps
+
+// To get real-time logs of docker container
+docker logs -f "CONTAINER_ID"
+
+```
+
 <hr><br>
 
 # Integrating Load Balancer
 
+## Build and Push Docker Image to ECR
+
+- Build the Docker Image with the command `docker build -f FoodDelivery.API/Dockerfile -t food-delivery-api:latest .`
+
+- Push the Docker Image to AWS ECR
+
+  - Create a Policy with all necessary permissions for ECR
+  - Attach the policy to the user who is going to handle the deployment
+  - Install AWS CLI
+  - Configure/Login to AWS using AccessKey
+
+  - Go to the `ECR Console`
+  - Click "Create Repository" (IF you didn't created already)
+  - Name your repository
+
+  - Authenticate docker to ECR like command `aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin your-account-id.dkr.ecr.your-region.amazonaws.com`. You can get this command from `View Push Commands` action of the created repository.
+  - Go to project folder and build the docker image with the command `docker build -f FoodDelivery.API/Dockerfile -t food-delivery-api .`
+  - Tag and push your docker image to ECR. Maintain versioning as tag so that you can distinguish between build. And can easily deploy an specific build. You can get these commands from `View Push Commands` action of the created repository.
+
 ## Deployment with EC2, ECR and EFS
+
+**EFS File System can be shared accross multiple EC2 instances. That's why we are using EFS while trying to configure a Load Balancer. Because, there will be multiple instances to which the Load Balancer will distribute traffic.**
 
 - Create a Security Group for EC2 Instance with default VPC ID
 - Create a Security Group for EFS Instance with default VPC ID
@@ -111,9 +142,32 @@ Push your docker image to ECR with the same approach described above.
 
 ## Integrating Load Balancer
 
+- Create multiple EC2 instances by following above guidelines
+- Go to the `EC2 Management Console`
+- In the navigation pane, under "Load Balacing", choose "Target Groups".
+- Create a Target Group.
+	- Name: Enter a name for the target group. Example: Food-delivery-app-instances
+	- Target Type: Choose `instance` (other options are IP and lambda)
+	- Protocol: Choose HTTP or HTTPS
+	- Port: Enter the port number your application listens on (e.g. 80, 443)
+	- Health Checks: Configure health check settings (path, protocol, port)
+	- Register Targets: Select the instances you want to include in the target group. Ensure these instances are running in the selected availability zones.
+- In the navigation pane, under "Load Balancing", choose "Load Balancers"
+- Create a `Application Load Balancer`
+- Configure Basic Settings:
+	- Name: Enter a name for your load balancer.
+	- Scheme: Choose "Internet-facing"
+	- IP Address Type: Choose "IPv4"
+- Configure Listeners and Availability Zones:
+	- Listeners: Add a listeners for HTTP or HTTPS (port 80 or 443)
+	- Availabilty Zones: Select your VPC (default) and at least two availabilty zones with associated subnets.
+- Configure Security Settings: (For HTTPS)
+	- Select an SSL Certificate: IF you're using HTTPS, select an existing SSL certificate from AWS Certificate Manager (ACM) or upload a new certificate
+- Configure Security Groups: Choose an existing security group or create a new one that allows inbound traffic on the ports your load balancer will listen on (e.g. HTTP, HTTPS).
+- Once all these steps done, copy the DNS name of load balancers and make api call to test.
+
 <hr><br>
 
 # Improvement (TODO)
 
-- Try adding a Load Balancer in front of multiple AWS Instance
 - Try hosting a database by creating EBS (Elastic Block Store) volume
