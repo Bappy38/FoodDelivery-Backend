@@ -1,39 +1,42 @@
 ﻿# Deployment using ECR and EC2
 
 - Prepare your .NET WebAPI as a Docker container.
-	- Build the Docker Image with the command `docker build -f FoodDelivery.API/Dockerfile -t food-delivery-api:latest .`
-	- Run the Docker Container with the command `docker run -d -p 80:8080 -e DashboardUrl=http://localhost:1234 food-delivery-api:latest`
+
+  - Build the Docker Image with the command `docker build -f FoodDelivery.API/Dockerfile -t food-delivery-api:latest .`
+  - Run the Docker Container with the command `docker run -d -p 80:8080 -e DashboardUrl=http://localhost:1234 food-delivery-api:latest`
 
 - Push the Docker Image to AWS ECR
-	- Create a Policy with all necessary permissions for ECR
-	- Attach the policy to the user who is going to handle the deployment
-	- Install AWS CLI
-	- Configure/Login to AWS using AccessKey
 
-	- Go to the `ECR Console`
-	- Click "Create Repository"
-	- Name your repository
+  - Create a Policy with all necessary permissions for ECR
+  - Attach the policy to the user who is going to handle the deployment
+  - Install AWS CLI
+  - Configure/Login to AWS using AccessKey
 
-	- Authenticate docker to ECR like command `aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin your-account-id.dkr.ecr.your-region.amazonaws.com`. You can get this command from `View Push Commands` action of the created repository.
-	- Go to project folder and build the docker image with the command `docker build -f FoodDelivery.API/Dockerfile -t food-delivery-api .`
-	- Tag and push your docker image to ECR. Maintain versioning as tag so that you can distinguish between build. And can easily deploy an specific build. You can get these commands from `View Push Commands` action of the created repository.
+  - Go to the `ECR Console`
+  - Click "Create Repository"
+  - Name your repository
+
+  - Authenticate docker to ECR like command `aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin your-account-id.dkr.ecr.your-region.amazonaws.com`. You can get this command from `View Push Commands` action of the created repository.
+  - Go to project folder and build the docker image with the command `docker build -f FoodDelivery.API/Dockerfile -t food-delivery-api .`
+  - Tag and push your docker image to ECR. Maintain versioning as tag so that you can distinguish between build. And can easily deploy an specific build. You can get these commands from `View Push Commands` action of the created repository.
 
 - Set Up Your EC2 Instance
-	- Go to EC2 Dashboard
-	- Launch Instance
-	- Keep all config as default for now
-	- We will access instance from AWS Dashboard, so no need to create key pair
+
+  - Go to EC2 Dashboard
+  - Launch Instance
+  - Keep all config as default for now
+  - We will access instance from AWS Dashboard, so no need to create key pair
 
 - Set Up EC2 Environment
-	- Switch to super user by the command `sudo su`
-	- Install docker by the command `yum install docker`.
-	- Start docker service by the command `sudo systemctl start docker.service`
-	- Check if the docker is running by the command `docker ps`
-	- Configure AWS like before at the console of EC2
-	- Authenticate Docker Client to ECR like we did while pushing docker image from local. You will find the command in the `View Push Commands` action of respective repository at ECR
-	- Pull the docker image from ECR with the command `docker pull your-account-id.dkr.ecr.your-region.amazonaws.com/yourapp-repo:latest`
-	- Run the docker container with the command `docker run -d -p 80:8080 your-account-id.dkr.ecr.your-region.amazonaws.com/yourapp-repo:latest`. Don't forget to provide environment variable if you have any.
-	- Don't forget to expose port. 80 for HTTP request, 443 for HTTPs request. Also run the docker container accordingly, means map to relevant port, 80 for HTTP, 443 for HTTPS.
+  - Switch to super user by the command `sudo su`
+  - Install docker by the command `yum install docker`.
+  - Start docker service by the command `sudo systemctl start docker.service`
+  - Check if the docker is running by the command `docker ps`
+  - Configure AWS like before at the console of EC2
+  - Authenticate Docker Client to ECR like we did while pushing docker image from local. You will find the command in the `View Push Commands` action of respective repository at ECR
+  - Pull the docker image from ECR with the command `docker pull your-account-id.dkr.ecr.your-region.amazonaws.com/yourapp-repo:latest`
+  - Run the docker container with the command `docker run -d -p 80:8080 your-account-id.dkr.ecr.your-region.amazonaws.com/yourapp-repo:latest`. Don't forget to provide environment variable if you have any.
+  - Don't forget to expose port. 80 for HTTP request, 443 for HTTPs request. Also run the docker container accordingly, means map to relevant port, 80 for HTTP, 443 for HTTPS.
 
 **Note:** While running docker container it's a best practice to specify how much RAM and how many CPUs it can use at max. If we don't specify such constraints then the resource distribution accross multiple containers running in that EC2 instance will not fair. It can happen that a single container using all resources of host's, but other containers can't occupy enough resource to run. Even if we run a single container into an EC2 instance, it can consumes all available memory and can cause the host system to become unstable or even crash.
 
@@ -49,6 +52,7 @@ docker run -d --cpus="1.0" --memory="2g" --name container-b my-memory-intensive-
 # Automation
 
 We can automate this deployment process like below:
+
 - We can write a bash script which will be responsible for installing all the necessary thing like `docker`, `ElasticSearch Agent` at the startup of an EC2 instance. There's a way we can upload this script while creating the EC2 instance.
 - We can write a bash script which will be responsible for Authenticating Docker Client to ECR, Pull the latest image of specified service from ECR, Run the docker container of pulled image with required port mapping. Then when we need to deploy, we will just run this script within our EC2 instance. Also, there can be a similar kind of script which will build and push the docker image to ECR from local machine.
 
@@ -75,13 +79,37 @@ Push your docker image to ECR with the same approach described above.
 - Create environment/appsettings.json file using the same way creating the script file. And provide this file path while executing deployment script.
 - Run the script with the command `/mnt/data/myscript.sh`
 
-
 ## Check Container Logs
-
 
 <hr><br>
 
-# Integrating Load Balancers
+# Integrating Load Balancer
+
+## Deployment with EC2, ECR and EFS
+
+- Create a Security Group for EC2 Instance with default VPC ID
+- Create a Security Group for EFS Instance with default VPC ID
+- Go to EC2-Security-Group and configure it
+  - Create an Inbound Rules of `Type: HTTP | Protocol: TCP | Port-Range: 80 | Source: Custom | 0.0.0.0/0` for Serving HTTP request
+  - Create an Inbound Rules of `Type: HTTPS | Protocol: TCP | Port-Range: 443 | Source: Custom | 0.0.0.0/0` for Serving HTTPS request
+  - Create an Inbound Rules of `Type: NFS | Protocol: TCP | Port-Range: 2049 | Source: Custom | EFS-Security-Group` for allowing EC2 to accept message from EFS
+  - Create an Inbound Rules of `Type: SSH | Protocol: TCP | Port-Range: 22 | Source: Custom | 0.0.0.0/0` for allowing SSH Connect
+  - Create an Outbound Rules of `Type: All traffic | Protocol: All | Port-Range: All | Destination: Custom | 0.0.0.0/0` for allowing EC2 to connect with any IP
+  - Create an Outbound Rules of `Type: NFS | Protocol: TCP | Port-Range: 2049 | Destination: Custom | EFS-Security-Group` for allowing EC2 to connect with EFS
+- Go to EFS-Security-Group and configure it
+  - Create an Inbound Rules of `Type: NFS | Protocol: TCP | Port-Range: 2049 | Source: Custom | EC2-Security-Group` for allowing EFS to accept message from EC2
+  - Create an Outbound Rules of `Type: All traffic | Protocol: All | Port-Range: All | Destination: Custom | 0.0.0.0/0` for allowing EFS to connect with any IP
+- Create an `EFS File System` and assigns the EFS-Security-Group we created earlier.
+- Create an `EC2 Instance` by providing our `Startup Script` in `User Data` section to install Docker and Necessary things. Also assigns the EC2-Security-Group we created earlier.
+- Inside EC2 instance, install `amazon-efs-utils` package with the command `sudo yum install -y amazon-efs-utils`. **Later, we can add this step in the startup script.**
+- Create a local folder named `efs` with the command `sudo mkdir -p /efs` to mount with the efs volume. **Later, we can add this step in the startup script.**
+- Go to the EFS file system we created. Click on `Attach` button and copy the mount command from `Mount Via DNS - Using the EFS Mount Helper` section. The command will be something like `sudo mount -t efs -o tls fs-xxxx:/ /efs`. **Don't forget to put a slash before the local folder name `efs`**. Execute this command to mount the EFS File System inside EC2. **Later, we can add this step in the startup script.**
+- Create the deployment script named `deploy.sh` with the command `sudo nano /efs/deploy.sh` if it not already exist in the EFS file system. Paste the deployment script. **Don't forget to provide AWS Credentials and ECR Repository Url.**
+- Create the environment file of your application like `food-delivery-app-config.json` with the command `sudo nano /efs/food-delivery-app-config.json`. Paste the necessary configs and save it.
+- Provide the environment file path in the deployment script like `/efs/food-delivery-app-config.json` and save it.
+- Execute the deployment script with the command `/efs/deploy.sh`. Your service will be deployed successfully.
+
+## Integrating Load Balancer
 
 <hr><br>
 
