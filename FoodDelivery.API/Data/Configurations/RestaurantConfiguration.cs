@@ -1,6 +1,8 @@
-﻿using FoodDelivery.API.Models;
+﻿using FoodDelivery.API.Constants;
+using FoodDelivery.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
 
 namespace FoodDelivery.API.Data.Configurations;
 
@@ -19,5 +21,10 @@ public class RestaurantConfiguration : IEntityTypeConfiguration<Restaurant>
             .WithOne(m => m.Restaurant)
             .HasForeignKey<RestaurantMenu>(m => m.RestaurantId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        var restaurantsJson = File.ReadAllText(ResourcePaths.Restaurants);
+        var restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(restaurantsJson);
+
+        builder.HasData(restaurants);
     }
 }

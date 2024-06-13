@@ -1,6 +1,8 @@
-﻿using FoodDelivery.API.Models;
+﻿using FoodDelivery.API.Constants;
+using FoodDelivery.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
 
 namespace FoodDelivery.API.Data.Configurations;
 
@@ -17,5 +19,10 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
         builder
             .Property(a => a.Longitude)
             .IsRequired();
+
+        var addressesJson = File.ReadAllText(ResourcePaths.Addresses);
+        var addresses = JsonConvert.DeserializeObject<List<Address>>(addressesJson);
+
+        builder.HasData(addresses);
     }
 }

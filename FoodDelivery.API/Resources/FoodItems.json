@@ -1,0 +1,242 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Spring Rolls",
+    "Description": "Crispy spring rolls stuffed with vegetables.",
+    "Price": 5.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/margherita-pizza-with-basil-top-view_2829-10397.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 2,
+    "Name": "Grilled Salmon",
+    "Description": "Freshly grilled salmon with a side of vegetables.",
+    "Price": 15.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/spaghetti-carbonara-white-plate_2829-15834.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 3,
+    "Name": "Cheesecake",
+    "Description": "Creamy cheesecake with a graham cracker crust.",
+    "Price": 6.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/tiramisu-italian-dessert_2829-12651.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 4,
+    "Name": "Bruschetta",
+    "Description": "Toasted bread topped with tomatoes and basil.",
+    "Price": 4.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/chicken-tikka-masala-with-rice_2829-19349.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 5,
+    "Name": "Spaghetti Carbonara",
+    "Description": "Classic spaghetti with pancetta and a creamy sauce.",
+    "Price": 12.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/naan-bread-flat-lay_2829-11117.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 6,
+    "Name": "Tiramisu",
+    "Description": "Traditional Italian dessert with coffee and mascarpone.",
+    "Price": 5.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/mango-lassi-indian-yogurt-drink_2829-11519.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 7,
+    "Name": "Garlic Bread",
+    "Description": "Bread with garlic and butter, toasted to perfection.",
+    "Price": 3.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/assorted-sushi-set-black-background_2829-15836.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 8,
+    "Name": "Chicken Alfredo",
+    "Description": "Pasta with creamy Alfredo sauce and grilled chicken.",
+    "Price": 13.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/miso-soup-wooden-bowl_2829-11711.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 9,
+    "Name": "Chocolate Lava Cake",
+    "Description": "Rich chocolate cake with a molten chocolate center.",
+    "Price": 7.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/matcha-green-tea-ice-cream_2829-12799.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 10,
+    "Name": "Mozzarella Sticks",
+    "Description": "Fried mozzarella cheese sticks with marinara sauce.",
+    "Price": 6.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/beef-tacos-with-lemon-slices_2829-13131.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 11,
+    "Name": "Beef Tacos",
+    "Description": "Tacos with seasoned beef, lettuce, and cheese.",
+    "Price": 10.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/guacamole-dip-with-tortilla-chips_2829-13130.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 12,
+    "Name": "Ice Cream Sundae",
+    "Description": "Vanilla ice cream topped with chocolate sauce and nuts.",
+    "Price": 4.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/churros-with-chocolate-sauce_2829-13132.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 13,
+    "Name": "Onion Rings",
+    "Description": "Crispy onion rings with a side of ranch dressing.",
+    "Price": 5.49,
+    "ImageUrl": "https://img.freepik.com/free-photo/caesar-salad-white-bowl_2829-13133.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 14,
+    "Name": "BBQ Ribs",
+    "Description": "Slow-cooked ribs with BBQ sauce and coleslaw.",
+    "Price": 18.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/grilled-chicken-sandwich_2829-13134.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 15,
+    "Name": "Apple Pie",
+    "Description": "Classic apple pie with a flaky crust.",
+    "Price": 5.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/chocolate-cake-slice-white-plate_2829-13135.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 16,
+    "Name": "Stuffed Mushrooms",
+    "Description": "Mushrooms stuffed with cheese and herbs.",
+    "Price": 6.49,
+    "ImageUrl": "https://img.freepik.com/free-photo/pad-thai-noodles-with-shrimp_2829-13136.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 17,
+    "Name": "Lamb Chops",
+    "Description": "Grilled lamb chops with mint sauce.",
+    "Price": 21.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/spring-rolls-plate_2829-13137.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 18,
+    "Name": "Panna Cotta",
+    "Description": "Italian dessert made with sweetened cream.",
+    "Price": 6.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/mango-sticky-rice_2829-13138.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 19,
+    "Name": "Buffalo Wings",
+    "Description": "Spicy chicken wings served with blue cheese dip.",
+    "Price": 7.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/cheeseburger-fries-plate_2829-13139.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 20,
+    "Name": "Cheeseburger",
+    "Description": "Juicy cheeseburger with lettuce, tomato, and pickles.",
+    "Price": 9.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/french-fries-ketchup_2829-13140.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 21,
+    "Name": "Brownie Sundae",
+    "Description": "Warm brownie topped with ice cream and chocolate sauce.",
+    "Price": 6.49,
+    "ImageUrl": "https://img.freepik.com/free-photo/milkshake-glass_2829-13141.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 22,
+    "Name": "Nachos",
+    "Description": "Tortilla chips topped with cheese, jalapenos, and salsa.",
+    "Price": 7.49,
+    "ImageUrl": "https://img.freepik.com/free-photo/greek-salad-bowl_2829-13142.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 23,
+    "Name": "Fajitas",
+    "Description": "Sizzling fajitas with chicken, peppers, and onions.",
+    "Price": 14.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/gyro-pita-sandwich_2829-13143.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 24,
+    "Name": "Churros",
+    "Description": "Fried dough pastries with cinnamon sugar.",
+    "Price": 4.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/baklava-dessert_2829-13144.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 25,
+    "Name": "Fried Calamari",
+    "Description": "Lightly breaded and fried calamari served with marinara sauce.",
+    "Price": 8.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/bbq-ribs-plate_2829-13145.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 26,
+    "Name": "Seafood Paella",
+    "Description": "Spanish rice dish with seafood and saffron.",
+    "Price": 19.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/coleslaw-salad_2829-13146.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 27,
+    "Name": "Creme Brulee",
+    "Description": "Rich custard dessert with a caramelized sugar top.",
+    "Price": 7.49,
+    "ImageUrl": "https://img.freepik.com/free-photo/cornbread-slices_2829-13147.jpg?w=740",
+    "FoodCategoryId": 3
+  },
+  {
+    "Id": 28,
+    "Name": "Potato Skins",
+    "Description": "Potato skins topped with cheese and bacon.",
+    "Price": 6.49,
+    "ImageUrl": "https://img.freepik.com/free-photo/vietnamese-pho-noodle-soup_2829-13148.jpg?w=740",
+    "FoodCategoryId": 1
+  },
+  {
+    "Id": 29,
+    "Name": "Steak and Potatoes",
+    "Description": "Grilled steak served with mashed potatoes.",
+    "Price": 22.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/vietnamese-spring-rolls_2829-13149.jpg?w=740",
+    "FoodCategoryId": 2
+  },
+  {
+    "Id": 30,
+    "Name": "Banana Split",
+    "Description": "Banana split with ice cream, chocolate sauce, and whipped cream.",
+    "Price": 5.99,
+    "ImageUrl": "https://img.freepik.com/free-photo/banh-mi-vietnamese-sandwich_2829-13150.jpg?w=740",
+    "FoodCategoryId": 3
+  }
+]

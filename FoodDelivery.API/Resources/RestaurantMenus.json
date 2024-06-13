@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "RestaurantId": 1
+  },
+  {
+    "Id": 2,
+    "RestaurantId": 2
+  },
+  {
+    "Id": 3,
+    "RestaurantId": 3
+  },
+  {
+    "Id": 4,
+    "RestaurantId": 4
+  },
+  {
+    "Id": 5,
+    "RestaurantId": 5
+  },
+  {
+    "Id": 6,
+    "RestaurantId": 6
+  },
+  {
+    "Id": 7,
+    "RestaurantId": 7
+  },
+  {
+    "Id": 8,
+    "RestaurantId": 8
+  },
+  {
+    "Id": 9,
+    "RestaurantId": 9
+  },
+  {
+    "Id": 10,
+    "RestaurantId": 10
+  }
+]

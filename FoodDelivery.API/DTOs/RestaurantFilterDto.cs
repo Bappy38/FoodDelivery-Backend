@@ -15,7 +15,6 @@ public class RestaurantFilterDto
     public string? SearchText { get; set; }
     public bool SelectTopRestaurant { get; set; } = false;
     public List<string>? Cuisines { get; set; }
-    public Location? Location { get; set; }
     public int PageNo { get; set; }
     public int PageSize { get; } = 10;
 
@@ -30,9 +29,6 @@ public class RestaurantFilterDto
                 break;
             case RestaurantSortKey.Rating:
                 sortCondition = (r) => -r.Rating;
-                break;
-            case RestaurantSortKey.Distance:
-                sortCondition = (r) => r.GetDistance(Location);
                 break;
         }
 
