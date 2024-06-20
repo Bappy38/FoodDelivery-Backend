@@ -7,4 +7,15 @@
 - IF we need to revert the database to a previous state, we can specify the migration to roll back with the command `dotnet ef database update {PreviousMigrationName}`
 - We can also remove last applied migration with the command `dotnet ef migrations remove`
 - Install pgAdmin to access your postgres instance. Provide username, password, hostname to connect to the DB instance.
-- 
+
+# Render's Postgres Server Setup
+
+- Create Postgres Server at Render
+- Find host, database, username, password from PSQL Command
+- Now, apply the already created migration from your local if there's any changes. By doing this, your seeded data and schema changes will pushed to the cloud server.
+- Now connect your server with PGAdmin. And check that the necessary changes propagated to cloud db server.
+- Provide the connection string to the environment variable of your backend server.
+
+That's it
+
+# Hosting Postgres Server in AWS EC2
