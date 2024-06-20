@@ -1,12 +1,10 @@
-﻿namespace FoodDelivery.API.Models;
+﻿namespace FoodDelivery.API.DTOs;
 
-public class Address
+public class AddressDto
 {
     public int Id { get; set; }
     public string Street { get; set; }
     public string City { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
-    
-    public ICollection<Restaurant> Restaurants { get; set; }
 }

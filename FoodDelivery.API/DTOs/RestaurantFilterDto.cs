@@ -1,4 +1,5 @@
-﻿using FoodDelivery.API.Models;
+﻿using System.Linq.Expressions;
+using FoodDelivery.API.Models;
 
 namespace FoodDelivery.API.Queries;
 
@@ -15,13 +16,12 @@ public class RestaurantFilterDto
     public string? SearchText { get; set; }
     public bool SelectTopRestaurant { get; set; } = false;
     public List<string>? Cuisines { get; set; }
-    public Location? Location { get; set; }
     public int PageNo { get; set; }
     public int PageSize { get; } = 10;
 
-    public Func<Restaurant, dynamic> GetSortQuery()
+    public Expression<Func<Restaurant, object>> GetSortQuery()
     {
-        Func<Restaurant, dynamic> sortCondition = (r) => r.Rating;
+        Expression<Func<Restaurant, object>> sortCondition = (r) => r.Rating;
 
         switch (SortKey)
         {
@@ -31,33 +31,30 @@ public class RestaurantFilterDto
             case RestaurantSortKey.Rating:
                 sortCondition = (r) => -r.Rating;
                 break;
-            case RestaurantSortKey.Distance:
-                sortCondition = (r) => r.GetDistance(Location);
-                break;
         }
 
         return sortCondition;
     }
 
-    public List<Func<Restaurant, bool>> GetComposedFilterConditions()
+    public List<Expression<Func<Restaurant, bool>>> GetComposedFilterConditions()
     {
-        var filterConditions = new List<Func<Restaurant, bool>>();
+        var filterConditions = new List<Expression<Func<Restaurant, bool>>>();
 
         if (SelectTopRestaurant)
         {
-            Func<Restaurant, bool> topRestaurantFilter = (r) => r.IsTopRestaurant();
+            Expression<Func<Restaurant, bool>> topRestaurantFilter = (r) => r.Rating >= Restaurant.MinRatingToBeTopRated;
             filterConditions.Add(topRestaurantFilter);
         }
 
         if (!string.IsNullOrWhiteSpace(SearchText))
         {
-            Func<Restaurant, bool> searchTextFilter = (r) => r.HasSearchRelevance(SearchText);
+            Expression<Func<Restaurant, bool>> searchTextFilter = (r) => r.Name.ToLower().Contains(SearchText.ToLower());
             filterConditions.Add(searchTextFilter);
         }
 
         if (Cuisines is not null && Cuisines.Count > 0)
         {
-            Func<Restaurant, bool> cuisineFilter = (r) => r.HasCuisineRelevance(Cuisines);
+            Expression<Func<Restaurant, bool>> cuisineFilter = (r) => Cuisines.Any(fc => r.Cuisine.ToLower().Contains(fc.ToLower()));
             filterConditions.Add(cuisineFilter);
         }
 
