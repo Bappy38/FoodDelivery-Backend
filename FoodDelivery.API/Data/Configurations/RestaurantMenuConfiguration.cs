@@ -10,6 +10,8 @@ public class RestaurantMenuConfiguration : IEntityTypeConfiguration<RestaurantMe
 {
     public void Configure(EntityTypeBuilder<RestaurantMenu> builder)
     {
+        builder.HasKey(rm => rm.Id);
+
         // Configure one-to-many relationship between RestaurantMenu and FoodCategory
         builder
             .HasMany(rm => rm.Categories)

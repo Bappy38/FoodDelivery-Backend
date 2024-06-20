@@ -32,6 +32,9 @@
     <Content Update="Resources\FoodCategories.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Resources\FoodItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Resources\RestaurantMenus.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

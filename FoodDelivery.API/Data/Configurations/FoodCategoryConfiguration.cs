@@ -10,6 +10,8 @@ public class FoodCategoryConfiguration : IEntityTypeConfiguration<FoodCategory>
 {
     public void Configure(EntityTypeBuilder<FoodCategory> builder)
     {
+        builder.HasKey(fc => fc.Id);
+
         // Configure one-to-many relationship between FoodCategory and FoodItem
         builder
             .HasMany(fc => fc.Items)
