@@ -1,80 +1,60 @@
-﻿using FoodDelivery.API.Constants;
+﻿using AutoMapper;
+using FoodDelivery.API.Data;
 using FoodDelivery.API.DTOs;
 using FoodDelivery.API.Models;
 using FoodDelivery.API.Queries;
-using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.API.Repositories;
 
-public interface IRestaurantRepository
+public interface IRestaurantRepository : IRepositoryBase<Restaurant>
 {
-    Task<List<Restaurant>> GetAllAsync();
     List<Restaurant> FilterRestaurant(RestaurantFilterDto filter);
-    RestaurantMenu GetMenuByRestaurantId(int restaurantId);
-    RestaurantDetailDto GetRestaurantDetail(int restaurantId);
+    Task<RestaurantDto> GetRestaurantDetailAsync(int restaurantId);
 }
 
-public class RestaurantRepository : IRestaurantRepository
+public sealed class RestaurantRepository : RepositoryBase<Restaurant>, IRestaurantRepository
 {
-    private static readonly List<Restaurant> restaurants;
-    private static readonly List<RestaurantMenu> menus;
+    private readonly IMapper mapper;
 
-    private ILogger<RestaurantRepository> _logger;
-
-    static RestaurantRepository()
+    public RestaurantRepository(
+        ApplicationDbContext context,
+        IUnitOfWork unitOfWork,
+        IMapper mapper) 
+        : 
+        base(context, unitOfWork)
     {
-        var restaurantsJson = File.ReadAllText(ResourcePaths.Restaurants);
-        restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(restaurantsJson);
-
-        var menuJson = File.ReadAllText(ResourcePaths.Menus);
-        menus = JsonConvert.DeserializeObject<List<RestaurantMenu>>(menuJson);
-    }
-
-    public RestaurantRepository(ILogger<RestaurantRepository> logger)
-    {
-        _logger = logger;
-    }
-
-    public async Task<List<Restaurant>> GetAllAsync()
-    {
-        _logger.LogDebug($"Restaurants Fetched. Debug");
-        _logger.LogInformation($"Restaurants Fetched. Information");
-        _logger.LogError($"Restaurants Fetched. Error");
-        return restaurants;
+        this.mapper = mapper;
     }
 
     public List<Restaurant> FilterRestaurant(RestaurantFilterDto filter)
     {
         var filterConditions = filter.GetComposedFilterConditions();
 
-        return restaurants
-            .Where(r => filterConditions.All(condition => condition(r)))
+        var query = Context.Restaurants.AsQueryable();
+
+        foreach (var condition in filterConditions)
+        {
+            query = query.Where(condition);
+        }
+
+        query = query
             .Skip((filter.PageNo - 1) * filter.PageSize)
             .Take(filter.PageSize)
-            .OrderBy(filter.GetSortQuery())
-            .ToList();
+            .OrderBy(filter.GetSortQuery());
+
+        return query.ToList();
     }
 
-    public RestaurantMenu GetMenuByRestaurantId(int restaurantId)
+    public async Task<RestaurantDto> GetRestaurantDetailAsync(int restaurantId)
     {
-        var menu = menus.FirstOrDefault(menu => menu.RestaurantId == restaurantId);
-        return menu;
-    }
+        var restaurant = await Context.Restaurants
+            .Include(r => r.Address)
+            .Include(r => r.Menu)
+            .ThenInclude(m => m.Categories)
+            .ThenInclude(c => c.Items)
+            .FirstOrDefaultAsync(r => r.Id == restaurantId);
 
-    public RestaurantDetailDto GetRestaurantDetail(int restaurantId)
-    {
-        var restaurant = restaurants.FirstOrDefault(r => r.Id == restaurantId);
-        var menu = menus.FirstOrDefault(m => m.RestaurantId == restaurantId);
-        return new RestaurantDetailDto
-        {
-            Id = restaurant.Id,
-            Name = restaurant.Name,
-            Cuisine = restaurant.Cuisine,
-            Rating = restaurant.Rating,
-            DeliveryTimeInMinutes = restaurant.DeliveryTimeInMinutes,
-            ImageUrl = restaurant.ImageUrl,
-            Address = restaurant.Address,
-            Menu = menu
-        };
+        return mapper.Map<RestaurantDto>(restaurant);
     }
 }

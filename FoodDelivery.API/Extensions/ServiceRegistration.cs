@@ -14,6 +14,7 @@ public static class ServiceRegistration
         return services
             .ConfigureCorsPolicy(configuration)
             .ConfigureDatabases(configuration)
+            .AddAutoMapper()
             .RegisterExceptionHandlers()
             .RegisterServices();
     }
@@ -55,8 +56,15 @@ public static class ServiceRegistration
         return services;
     }
 
+    private static IServiceCollection AddAutoMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(Program).Assembly);
+        return services;
+    }
+
     private static IServiceCollection RegisterServices(this IServiceCollection services)
     {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IRestaurantRepository, RestaurantRepository>();
         services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
 

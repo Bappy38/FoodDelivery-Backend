@@ -2,7 +2,7 @@
 
 namespace FoodDelivery.API.DTOs;
 
-public class RestaurantDetailDto
+public class RestaurantDto
 {
     public int Id { get; init; }
     public string Name { get; init; }
@@ -10,6 +10,7 @@ public class RestaurantDetailDto
     public double Rating { get; init; }
     public int DeliveryTimeInMinutes { get; init; }
     public string ImageUrl { get; init; }
-    public Address Address { get; init; }
-    public RestaurantMenu Menu { get; init; }
+    public bool IsPromoted { get; set; }
+    public AddressDto Address { get; init; }
+    public RestaurantMenuDto Menu { get; init; }
 }

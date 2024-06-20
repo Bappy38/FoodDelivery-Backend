@@ -18,14 +18,14 @@ public class RestaurantsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var restaurants = await _restaurantsRepository.GetAllAsync();
+        var restaurants = _restaurantsRepository.FindAll();
         return Ok(restaurants);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var restaurantDetail = _restaurantsRepository.GetRestaurantDetail(id);
+        var restaurantDetail = await _restaurantsRepository.GetRestaurantDetailAsync(id);
         if (restaurantDetail is null)
         {
             return NotFound();

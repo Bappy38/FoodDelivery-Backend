@@ -2,6 +2,8 @@
 
 public class Restaurant
 {
+    public const double MinRatingToBeTopRated = 4.0;
+
     public int Id { get; set; }
     public string Name { get; set; }
     public string Cuisine { get; set; }
@@ -17,7 +19,7 @@ public class Restaurant
 
     public bool IsTopRestaurant()
     {
-        return Rating > 4.0;
+        return Rating >= MinRatingToBeTopRated;
     }
 
     public bool HasSearchRelevance(string searchText)
